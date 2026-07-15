@@ -8,7 +8,7 @@ BROKER_ADDRESS = "10.2.105.65"
 PORT = 1883
 
 # 2. 다른 사람의 데이터와 섞이지 않게 우리 팀만의 고유한 방(Topic) 이름을 만듭니다.
-TOPIC = "rcteam3/autocar/status"
+TOPIC = "rcteam3/autocar/A/status"
 
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
