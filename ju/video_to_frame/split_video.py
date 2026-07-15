@@ -9,13 +9,13 @@ import cv2
 
 # 분할할 영상 파일
 BASE_DIR = Path(__file__).resolve().parent
-VIDEO_PATH = BASE_DIR / "input_video.mp4"
+VIDEO_PATH = BASE_DIR / "input_video2.mp4"
 OUTPUT_ROOT = BASE_DIR / "frames"
 
 # 1이면 모든 프레임 저장
 # 2이면 2프레임마다 1장 저장
 # 5이면 5프레임마다 1장 저장
-SAVE_EVERY_N_FRAMES = 1
+SAVE_EVERY_N_FRAMES = 5
 
 # JPG 품질: 0~100
 JPEG_QUALITY = 95
