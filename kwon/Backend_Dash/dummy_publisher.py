@@ -29,6 +29,7 @@ try:
     while True:
         dummy_data = {
             "car_id": "A",
+            "mode": "driving",
             "speed": random.randint(10, 20),
             "steering_angle": random.randint(-5, 5),
             "current_lane": 2,

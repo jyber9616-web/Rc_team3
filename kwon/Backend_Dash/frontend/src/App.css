@@ -1,0 +1,347 @@
+.dashboard {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 20px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ── 헤더 / 서버 연결 ───────────────────────────────────────── */
+
+.dashboard__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dashboard__header h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.host-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.host-form label {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.host-form input {
+  font: inherit;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface-1);
+  color: var(--text-primary);
+  width: 150px;
+}
+
+.host-form button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.host-form__status {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ── 상태 점 (공용) ─────────────────────────────────────────── */
+
+.status-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-dot--good {
+  background: var(--status-good);
+}
+.status-dot--warning {
+  background: var(--status-warning);
+}
+.status-dot--serious {
+  background: var(--status-serious);
+}
+.status-dot--critical {
+  background: var(--status-critical);
+}
+
+/* ── 전체 제어 버튼 ─────────────────────────────────────────── */
+
+.control-bar {
+  display: flex;
+  gap: 10px;
+}
+
+.control-bar__btn {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.control-bar__btn--good {
+  border-color: var(--status-good);
+  color: var(--status-good);
+}
+
+.control-bar__btn--critical {
+  background: var(--status-critical);
+  border-color: var(--status-critical);
+  color: #ffffff;
+}
+
+/* ── 차량 카드 ──────────────────────────────────────────────── */
+
+.dashboard__cars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.car-card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.car-card__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.car-card__header h3 {
+  margin: 0;
+  font-size: 16px;
+  flex: 1;
+}
+
+.car-card__mode {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.car-card__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 12px;
+  margin: 0;
+}
+
+.car-card__stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.car-card__stats dt {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.car-card__stats dd {
+  margin: 0;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.car-card__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.car-card__actions button {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--page-plane);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+/* ── 하단: 그래프 + 로그 ────────────────────────────────────── */
+
+.dashboard__lower {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 760px) {
+  .dashboard__lower {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card,
+.event-log {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.chart-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.chart-card h3,
+.event-log h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.chart-legend li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.chart-legend__swatch {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.chart-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.chart-gridline {
+  stroke: var(--gridline);
+  stroke-width: 1;
+}
+
+.chart-tick {
+  fill: var(--text-muted);
+  font-size: 11px;
+}
+
+.chart-line {
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.chart-end-dot {
+  stroke: var(--surface-1);
+  stroke-width: 2;
+}
+
+.chart-end-label {
+  fill: var(--text-secondary);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-crosshair {
+  stroke: var(--text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.chart-tooltip {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 14px;
+}
+
+.chart-tooltip div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.chart-hint {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ── 시스템 로그 ────────────────────────────────────────────── */
+
+.event-log ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.event-log li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--gridline);
+  padding-bottom: 6px;
+}
+
+.event-log__time {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.event-log__car {
+  font-weight: 600;
+}
+
+.event-log__type {
+  color: var(--text-primary);
+}
+
+.event-log__detail {
+  color: var(--text-secondary);
+}
+
+.event-log__empty {
+  color: var(--text-muted);
+  border-bottom: none;
+}
