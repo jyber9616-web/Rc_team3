@@ -8,20 +8,39 @@ import './App.css'
 
 const CAR_IDS = ['A', 'B', 'C']
 const HOST_STORAGE_KEY = 'rcteam3_backend_host'
+const CAM_HOSTS_STORAGE_KEY = 'rcteam3_cam_hosts'
+
+function loadCamHosts() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(CAM_HOSTS_STORAGE_KEY))
+    return { A: '', B: '', C: '', ...saved }
+  } catch {
+    return { A: '', B: '', C: '' }
+  }
+}
 
 function App() {
   const [host, setHost] = useState(() => localStorage.getItem(HOST_STORAGE_KEY) ?? '')
   const [hostInput, setHostInput] = useState(host)
+  const [camHosts, setCamHosts] = useState(loadCamHosts)
 
   useEffect(() => {
     if (host) localStorage.setItem(HOST_STORAGE_KEY, host)
   }, [host])
+
+  useEffect(() => {
+    localStorage.setItem(CAM_HOSTS_STORAGE_KEY, JSON.stringify(camHosts))
+  }, [camHosts])
 
   const { cars, events, distanceHistory, connected, sendCommand } = useDashboardSocket(host)
 
   const handleHostSubmit = (e) => {
     e.preventDefault()
     setHost(hostInput.trim())
+  }
+
+  const handleCamHostChange = (carId, value) => {
+    setCamHosts((prev) => ({ ...prev, [carId]: value }))
   }
 
   return (
@@ -46,7 +65,14 @@ function App() {
 
       <section className="dashboard__cars">
         {CAR_IDS.map((carId) => (
-          <CarCard key={carId} carId={carId} data={cars[carId]} onCommand={sendCommand} />
+          <CarCard
+            key={carId}
+            carId={carId}
+            data={cars[carId]}
+            onCommand={sendCommand}
+            camHost={camHosts[carId]}
+            onCamHostChange={(value) => handleCamHostChange(carId, value)}
+          />
         ))}
       </section>
 

@@ -146,6 +146,31 @@
   color: var(--text-secondary);
 }
 
+.car-card__cam {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.car-card__cam-input {
+  font: inherit;
+  font-size: 12px;
+  padding: 5px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--page-plane);
+  color: var(--text-primary);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.car-card__cam-feed {
+  width: 100%;
+  border-radius: 8px;
+  background: #000;
+  display: block;
+}
+
 .car-card__stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -178,6 +203,35 @@
 .car-card__actions button {
   flex: 1;
   padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--page-plane);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.car-card__signals {
+  display: flex;
+  gap: 8px;
+}
+
+.car-card__signal-group {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.car-card__signal-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.car-card__signal-group button {
+  flex: 1;
+  padding: 5px 4px;
+  font-size: 12px;
   border-radius: 6px;
   border: 1px solid var(--border);
   background: var(--page-plane);

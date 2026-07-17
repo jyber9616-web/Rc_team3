@@ -13,7 +13,7 @@ function statusClassFor(mode) {
   return 'status-dot--warning'
 }
 
-export function CarCard({ carId, data, onCommand }) {
+export function CarCard({ carId, data, onCommand, camHost, onCamHostChange }) {
   const mode = data?.mode ?? 'offline'
   const isOffline = !data || mode === 'offline'
 
@@ -23,6 +23,28 @@ export function CarCard({ carId, data, onCommand }) {
         <span className={`status-dot ${statusClassFor(mode)}`} />
         <h3>{carId} 차량</h3>
         <span className="car-card__mode">{MODE_LABEL[mode] ?? mode}</span>
+      </div>
+
+      <div className="car-card__cam">
+        <input
+          className="car-card__cam-input"
+          value={camHost ?? ''}
+          onChange={(e) => onCamHostChange(e.target.value)}
+          placeholder="카메라 IP (예: 172.20.10.6)"
+        />
+        {camHost ? (
+          <img
+            className="car-card__cam-feed"
+            src={`http://${camHost}:8000/video_feed`}
+            alt={`${carId} 차량 카메라`}
+            onError={(e) => {
+              e.target.style.display = 'none'
+            }}
+            onLoad={(e) => {
+              e.target.style.display = 'block'
+            }}
+          />
+        ) : null}
       </div>
 
       <dl className="car-card__stats">
@@ -51,6 +73,27 @@ export function CarCard({ carId, data, onCommand }) {
         <button type="button" onClick={() => onCommand('stop', carId)}>
           정지
         </button>
+      </div>
+
+      <div className="car-card__signals">
+        <div className="car-card__signal-group">
+          <span className="car-card__signal-label">◀ 좌측</span>
+          <button type="button" onClick={() => onCommand('left_signal_on', carId)}>
+            ON
+          </button>
+          <button type="button" onClick={() => onCommand('left_signal_off', carId)}>
+            OFF
+          </button>
+        </div>
+        <div className="car-card__signal-group">
+          <span className="car-card__signal-label">우측 ▶</span>
+          <button type="button" onClick={() => onCommand('right_signal_on', carId)}>
+            ON
+          </button>
+          <button type="button" onClick={() => onCommand('right_signal_off', carId)}>
+            OFF
+          </button>
+        </div>
       </div>
     </div>
   )
