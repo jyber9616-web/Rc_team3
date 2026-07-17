@@ -13,7 +13,7 @@ from typing import Callable, Dict, Optional
 import paho.mqtt.client as mqtt
 
 # ── 설정 ──────────────────────────────────────────────────────────
-BROKER_ADDRESS = "10.2.105.65"  # Mosquitto 브로커 IP (Wi-Fi 재연결 시 바뀔 수 있음)
+BROKER_ADDRESS = "172.20.10.5"  # Mosquitto 브로커 IP (Wi-Fi 재연결 시 바뀔 수 있음)
 BROKER_PORT = 1883
 
 CAR_IDS = ["A", "B", "C"]
@@ -23,7 +23,11 @@ EVENT_TOPIC_FILTER = "rcteam3/autocar/+/event"
 COMMAND_TOPIC_TEMPLATE = "rcteam3/autocar/{car_id}/command"
 COMMAND_ALL_TOPIC = "rcteam3/autocar/all/command"
 
-VALID_COMMANDS = {"start", "stop", "emergency_stop"}
+VALID_COMMANDS = {
+    "start", "stop", "emergency_stop",
+    "left_signal_on", "left_signal_off",
+    "right_signal_on", "right_signal_off",
+}
 
 # ── 상태 저장소 (car_id -> 최신 status dict) ─────────────────────
 car_state: Dict[str, dict] = {car_id: {"car_id": car_id, "mode": "offline"} for car_id in CAR_IDS}

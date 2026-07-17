@@ -17,7 +17,7 @@
 SESSION="rcteam3"
 REPO_ROOT="$HOME/github/Rc_team3"
 BACKEND_DIR="$REPO_ROOT/kwon/Backend_Dash/backend"
-BROKER_IP="10.2.105.65"   # Wi-Fi 재연결로 IP 바뀌면 여기 수정
+BROKER_IP="172.20.10.5"   # Wi-Fi 재연결로 IP 바뀌면 여기 수정 (mqtt_broker.py의 BROKER_ADDRESS와 항상 동일하게 유지)
 
 # 이미 세션이 떠있으면 새로 만들지 않고 그냥 붙기만 함
 if tmux has-session -t "$SESSION" 2>/dev/null; then
