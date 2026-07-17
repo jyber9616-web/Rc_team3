@@ -4,11 +4,11 @@ import time
 import random
 
 # 1. 공개 우체국 주소 사용 (내 PC에 프로그램 설치할 필요 없음!)
-BROKER_ADDRESS = "test.mosquitto.org"
+BROKER_ADDRESS = "172.20.10.5"
 PORT = 1883
 
 # 2. 다른 사람의 데이터와 섞이지 않게 우리 팀만의 고유한 방(Topic) 이름을 만듭니다.
-TOPIC = "rcteam3/autocar/status"
+TOPIC = "rcteam3/autocar/A/status"
 
 def on_connect(client, userdata, flags, rc):
     if rc == 0:
@@ -29,6 +29,7 @@ try:
     while True:
         dummy_data = {
             "car_id": "A",
+            "mode": "driving",
             "speed": random.randint(10, 20),
             "steering_angle": random.randint(-5, 5),
             "current_lane": 2,
